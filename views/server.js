@@ -17,9 +17,7 @@ const Media = ({
 }) => html`
   <div${hidden ? ' hidden' : ''}>
     <h2>
-      <span id="artist">${escape(artist)}</span>
-      –
-      <span id="title">${escape(title)}</span>
+      <span id="artist">${escape(artist)}</span> – <span id="title">${escape(title)}</span>
     </h2>
 
     <img id="thumbnail" src="${escape(thumbnail)}" alt="">
@@ -36,6 +34,10 @@ module.exports = ({
   <a href="/">« Back</a>
 
   <h1>${escape(title)}</h1>
+
+  <button id="beginPlaying">
+    Start audio playback
+  </button>
 
   ${Media(booth ? {
     artist: booth.media.artist,

@@ -1,3 +1,4 @@
+var beginPlaying$ = document.getElementById('beginPlaying')
 var audio$ = document.getElementById('audio')
 var title$ = document.getElementById('title')
 var artist$ = document.getElementById('artist')
@@ -5,6 +6,15 @@ var thumbnail$ = document.getElementById('thumbnail')
 var progress$ = document.getElementById('progress')
 var socket = new WebSocket(S.socketUrl)
 socket.onmessage = onmessage
+
+var before = Date.now()
+beginPlaying$.addEventListener('click', function () {
+  audio$.currentTime = (S.seek || 0) + Math.round((Date.now() - before) / 1000)
+  audio$.play()
+})
+audio$.addEventListener('playing', function () {
+  beginPlaying$.hidden = true
+})
 
 audio$.addEventListener('timeupdate', function () {
   progress$.value = audio$.currentTime
