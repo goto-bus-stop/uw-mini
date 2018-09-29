@@ -52,7 +52,9 @@ app.register(async (fastify) => {
     let audioUrl = null
     if (media) {
       if (media.sourceType === 'soundcloud') {
-        audioUrl = `${media.sourceData.streamUrl}&client_id=9d883cdd4c3c54c6dddda2a5b3a11200`
+        audioUrl = `${media.sourceData.streamUrl}${
+          /\?/.test(media.sourceData.streamUrl) ? '&' : '?'
+        }client_id=9d883cdd4c3c54c6dddda2a5b3a11200`
       } else if (media.sourceType === 'youtube') {
         const format = await getYouTubeAudio(media.sourceID)
         audioUrl = format.url
@@ -74,7 +76,6 @@ app.register(async (fastify) => {
   })
 
   fastify.get('/youtube/:sourceID', async (req, reply) => {
-    const opts = { quality: 'highestaudio' }
     const format = await getYouTubeAudio(req.params.sourceID)
     reply.type('application/json')
     reply.send({ src: format.url })

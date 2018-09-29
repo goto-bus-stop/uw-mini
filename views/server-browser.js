@@ -1,3 +1,5 @@
+/* eslint-env browser */
+/* global S */
 var beginPlaying$ = document.getElementById('beginPlaying')
 var audio$ = document.getElementById('audio')
 var title$ = document.getElementById('title')
@@ -42,17 +44,15 @@ function advance (booth) {
   var media = entry.media
   var start = Date.now()
   if (media.sourceType === 'soundcloud') {
-    var srcThunk = function (cb) {
-      cb(null, media.sourceData.streamUrl + '&client_id=9d883cdd4c3c54c6dddda2a5b3a11200')
-    }
+    onsrc(null, media.sourceData.streamUrl +
+      (/\?/.test(media.sourceData.streamUrl) ? '&' : '?') +
+      'client_id=9d883cdd4c3c54c6dddda2a5b3a11200')
   } else if (media.sourceType === 'youtube') {
-    var srcThunk = function (cb) {
-      fetch('/youtube/' + media.sourceID)
-        .then(function (response) { return response.json() })
-        .then(function (format) { cb(null, format.src) }, cb)
-    }
+    fetch('/youtube/' + media.sourceID)
+      .then(function (response) { return response.json() })
+      .then(function (format) { onsrc(null, format.src) }, onsrc)
   }
-  srcThunk(function (err, src) {
+  function onsrc (err, src) {
     if (err) {
       audio$.stop()
     } else {
@@ -69,7 +69,7 @@ function advance (booth) {
       audio$.currentTime = entry.start + Math.round((Date.now() - start) / 1000)
       audio$.play()
     }
-  })
+  }
 }
 
 function formatDuration (n) {
