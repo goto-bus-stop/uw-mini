@@ -1,5 +1,6 @@
 const fastify = require('fastify')
 const plugin = require('fastify-plugin')
+const compress = require('fastify-compress')
 const fetch = require('isomorphic-fetch')
 const ess = require('event-source-stream')
 const ytdl = require('ytdl-core')
@@ -11,6 +12,7 @@ const app = fastify({
   logger: true
 })
 
+app.register(compress)
 app.register(plugin(async (fastify) => {
   const events = ess(`${ANNOUNCE_URL}/events`, { json: true })
   const response = await fetch(ANNOUNCE_URL)

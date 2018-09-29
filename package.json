@@ -35,6 +35,7 @@
     "escape-html": "^1.0.3",
     "event-source-stream": "^1.6.0",
     "fastify": "^1.12.1",
+    "fastify-compress": "^0.7.0",
     "fastify-plugin": "^1.2.1",
     "inflight": "^1.0.6",
     "isomorphic-fetch": "^2.2.1",
