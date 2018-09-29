@@ -10,6 +10,13 @@ const style = css`
   }
 
   a, a:visited { color: #9d2053; }
+  #progress { width: 100%; }
+  #thumbnail { width: 100%; }
+
+  @media (min-width: 768px) {
+    body { width: 600px; margin: auto }
+    #thumbnail { filter: blur(3px); -webkit-filter: blur(3px) }
+  }
 `
 
 module.exports = (title, content) => html`
