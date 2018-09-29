@@ -30,7 +30,7 @@ module.exports = ({
   audioUrl,
   booth,
   seek
-}) => layout(html`
+}) => layout(`${title} · üWave`, html`
   <a href="/">« Back</a>
 
   <h1>${escape(title)}</h1>
