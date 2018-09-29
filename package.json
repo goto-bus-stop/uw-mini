@@ -1,0 +1,44 @@
+{
+  "name": "u-wave-mini",
+  "private": true,
+  "description": "a very small üWave web client!",
+  "version": "0.0.0",
+  "author": "Renée Kooi <renee@kooi.me>",
+  "bugs": {
+    "url": "https://github.com/goto-bus-stop/u-wave-mini/issues"
+  },
+  "devDependencies": {
+    "pino-colada": "^1.4.4",
+    "standard": "^11.0.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.0.0"
+  },
+  "homepage": "https://github.com/goto-bus-stop/u-wave-mini",
+  "keywords": [
+    "collaborative-listening",
+    "federation",
+    "u-wave"
+  ],
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goto-bus-stop/u-wave-mini.git"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "standard && node test | tap-spec"
+  },
+  "dependencies": {
+    "dedent": "^0.7.0",
+    "escape-html": "^1.0.3",
+    "event-source-stream": "^1.6.0",
+    "fastify": "^1.12.1",
+    "fastify-plugin": "^1.2.1",
+    "inflight": "^1.0.6",
+    "isomorphic-fetch": "^2.2.1",
+    "terser": "^3.9.2",
+    "unfetch": "^4.0.1",
+    "ytdl-core": "^0.26.0"
+  }
+}
